@@ -8,7 +8,7 @@ UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Allowed file extensionsso
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx'}
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'csv'}
 
 # Function to check if a file has an allowed extension
 def allowed_file(filename):
@@ -44,6 +44,8 @@ def upload_file():
 # Route to serve uploaded files (GET request)
 @app.route('/uploads/<filename>')
 def get_file(filename):
+    print("Attempting to getch filename: ", filename)
+    print("From: ", os.path.join(app.config['UPLOAD_FOLDER']))
     return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
 if __name__ == '__main__':
